@@ -98,10 +98,12 @@ public class tower_script : MonoBehaviour
             }
 
 
-            if (minDist <= 10)
+            if (minDist <= 1)
             {
                 float deltaY = transform.position.y - tMin.position.y;
                 float deltaX = transform.position.x - tMin.position.x;
+
+                //errechnet die position des nächsten gegners in grad (oben = 0°/360°, rechts = 90°, unten = 180°, links = 270°)
 
                 tower_dir = (float)Math.Atan(deltaY / deltaX) * (180 / (float) Math.PI) - 90;
 
@@ -115,17 +117,16 @@ public class tower_script : MonoBehaviour
                     tower_dir += 180;
                 }
 
-                print(tower_dir);
+                //print(tower_dir); //für test-zwecke
 
 
                 //transform.rotation = Quaternion.Euler( 0 , 0 , tower_dir);
 
 
+                tower_anim(tower_dir);
 
 
             }
-
-            tower_anim(tower_dir);
 
         }
 
