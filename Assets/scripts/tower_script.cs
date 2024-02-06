@@ -30,7 +30,17 @@ public class tower_script : MonoBehaviour
 
     }
 
-    // Update is called once per frame
+
+    //falls der turm beim platzieren mit einem anderen turm, dem weg oder hindernissen auf der karte kollidiert, kann er nicht platziert werden
+    void OnTriggerExit2D(Collider2D other)
+    {
+        can_place = true;
+    }
+    void OnTriggerStay2D(Collider2D other)
+    {
+        can_place = false;
+    }
+
     void Update()
     {
         if (is_placing)
@@ -150,6 +160,17 @@ public class tower_script : MonoBehaviour
             anim.SetBool("is_facing_left", false);
         }
 
+
+        if (tower_dir > 292.5f & tower_dir < 337.5f)
+        {
+            anim.SetBool("is_facing_up_left", true);
+        }
+        else
+        {
+            anim.SetBool("is_facing_up_left", false);
+        }
+
+
         if (tower_dir > 337.5f | tower_dir < 22.5f)
         {
             anim.SetBool("is_facing_up", true);
@@ -158,6 +179,16 @@ public class tower_script : MonoBehaviour
         {
             anim.SetBool("is_facing_up", false);
         }
+
+        if (tower_dir > 22.5f & tower_dir < 67.5f)
+        {
+            anim.SetBool("is_facing_up_right", true);
+        }
+        else
+        {
+            anim.SetBool("is_facing_up_right", false);
+        }
+
 
         if (tower_dir > 67.5f & tower_dir < 112.5f)
         {
@@ -168,6 +199,16 @@ public class tower_script : MonoBehaviour
             anim.SetBool("is_facing_right", false);
         }
 
+        if (tower_dir > 112.5f & tower_dir < 157.5f)
+        {
+            anim.SetBool("is_facing_down_right", true);
+        }
+        else
+        {
+            anim.SetBool("is_facing_down_right", false);
+        }
+
+
         if (tower_dir > 157.5f & tower_dir < 202.5f)
         {
             anim.SetBool("is_facing_down", true);
@@ -176,16 +217,16 @@ public class tower_script : MonoBehaviour
         {
             anim.SetBool("is_facing_down", false);
         }
-    }
 
-    //falls der turm beim platzieren mit einem anderen turm, dem weg oder hindernissen auf der karte kollidiert, kann er nicht platziert werden
-    void OnTriggerExit2D(Collider2D other)
-    {
-        can_place = true;
+        if (tower_dir > 202.5f & tower_dir < 247.5f)
+        {
+            anim.SetBool("is_facing_down_left", true);
+        }
+        else
+        {
+            anim.SetBool("is_facing_down_left", false);
+        }
     }
-    void OnTriggerStay2D(Collider2D other)
-    {
-        can_place = false;
-    }
+    
 
 }

@@ -23,9 +23,9 @@ public class game_logic : MonoBehaviour
 
     void Start()
     {
-        Screen.SetResolution(2560, 1440, fullscreenMode: FullScreenMode.MaximizedWindow, preferredRefreshRate: 120); //setzen der auflösung für die bildschirmausgabe
+        Screen.SetResolution(2560, 1440, fullscreenMode: FullScreenMode.MaximizedWindow, preferredRefreshRate: 240);//setzen der auflösung für die bildschirmausgabe
     }
-
+    
     // Update is called once per frame
     void Update()
     {
