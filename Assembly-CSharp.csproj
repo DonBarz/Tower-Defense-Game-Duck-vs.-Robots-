@@ -67,6 +67,7 @@
     <Compile Include="Assets\scripts\level2_collision.cs" />
     <Compile Include="Assets\scripts\level3_script.cs" />
     <Compile Include="Assets\scripts\game_logic.cs" />
+    <Compile Include="Assets\scripts\bullet_script.cs" />
     <Compile Include="Assets\scripts\level2_script.cs" />
     <Compile Include="Assets\scripts\tower_placing.cs" />
     <Compile Include="Assets\scripts\tower_script.cs" />

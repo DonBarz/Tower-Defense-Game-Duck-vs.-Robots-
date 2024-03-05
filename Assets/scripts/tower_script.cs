@@ -24,6 +24,12 @@ public class tower_script : MonoBehaviour
     GameObject[] enemies;
     Transform enemies_pos;
     float enemy_distance;
+
+    float fire_cooldown;
+    float firerate = 1f;   //für zeitabstände zwischen einzelnen Schüssen
+    float max_range = 1f;
+    public GameObject Schuss;
+
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -43,7 +49,10 @@ public class tower_script : MonoBehaviour
 
     void Update()
     {
-        if (is_placing)
+        
+
+            //nur wenn am platzieren-wird ausgeführt
+            if (is_placing)
         {
             transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10));
 
@@ -84,6 +93,7 @@ public class tower_script : MonoBehaviour
             //deaktivieren des colliders (und aktivieren des triggers)
             coll.isTrigger = true;
         }
+        //wenn nicht platziert wird
         else
         {
             //aktivieren des colliders (für andere türme)
@@ -108,7 +118,7 @@ public class tower_script : MonoBehaviour
             }
 
 
-            if (minDist <= 1)
+            if (minDist <= max_range)
             {
                 float deltaY = transform.position.y - tMin.position.y;
                 float deltaX = transform.position.x - tMin.position.x;
@@ -130,13 +140,18 @@ public class tower_script : MonoBehaviour
                 //print(tower_dir); //für test-zwecke
 
 
-                //transform.rotation = Quaternion.Euler( 0 , 0 , tower_dir);
-
+                if (fire_cooldown <= 0) 
+                {
+                    Instantiate(Schuss,transform.position, Quaternion.Euler(0, 0, tower_dir * -1 + 180));
+                    fire_cooldown = firerate;
+                }
 
                 tower_anim(tower_dir);
 
 
             }
+
+            fire_cooldown -= Time.deltaTime * game_logic.time_modi; //zeit zwischen Schüssen
 
         }
 

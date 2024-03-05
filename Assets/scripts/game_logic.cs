@@ -11,7 +11,7 @@ public class game_logic : MonoBehaviour
 
     public static float hitpoints = 10f; //leben des spielers
 
-    public static float money = 25000f; //währung des spielers
+    public static float money = 450f; //währung des spielers
 
     public static float time_modi = 0; //variale zum modifizieren der zeit
 

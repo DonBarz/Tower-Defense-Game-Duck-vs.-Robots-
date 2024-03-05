@@ -14,6 +14,7 @@ public class movement_enemy : MonoBehaviour
 
     private Animator anim;
     private SpriteRenderer sprite;
+    private Collider2D coll;
 
     float Xpos_want;
     float Ypos_want;
@@ -29,14 +30,15 @@ public class movement_enemy : MonoBehaviour
 
     bool dead = false;
 
-    float death_waiting_timer = 1;
-    float spawn_waiting_timer = 3;
+    float death_waiting_timer = 0;
+    float spawn_waiting_timer = 0;
 
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
+        coll = GetComponent<Collider2D>();
 
         transform.position = new Vector3(spawner.enemy_Xpos, spawner.enemy_Ypos, 0);
         //print(spawner.enemy_Xpos + "" + spawner.enemy_Ypos);
@@ -58,6 +60,10 @@ public class movement_enemy : MonoBehaviour
         }
 
     }
+        void OnTriggerEnter2D(Collider2D other)
+    {
+        dead = true;
+    }
 
     // Update is called once per frame
     void Update()
@@ -66,7 +72,6 @@ public class movement_enemy : MonoBehaviour
         if (game_logic.time_modi > 0)
         {
             enemy_move();
-            check_coll();
         }
     }
 
@@ -127,11 +132,6 @@ public class movement_enemy : MonoBehaviour
         {
             anim.SetBool("dead", false);
         }
-    }
-
-    void check_coll()
-    {
-        
     }
 
     void enemy_move()
@@ -205,12 +205,12 @@ public class movement_enemy : MonoBehaviour
 
             if (enemy_tier == 2)
             {
-                spawner.spawn_enemy(1, transform.position.x, transform.position.y, already_done, enemy1, enemy2, enemy3);
+                spawner.spawn_enemy(1, transform.position.x, transform.position.y - Yoffset / 2, already_done, enemy1, enemy2, enemy3);
             }
 
             if (enemy_tier == 3)
             {
-                spawner.spawn_enemy(2, transform.position.x, transform.position.y, already_done, enemy1, enemy2, enemy3);
+                spawner.spawn_enemy(2, transform.position.x, transform.position.y - Yoffset / 2, already_done, enemy1, enemy2, enemy3);
             }
 
         //könnte man vereinfachen... ich möchte mir aber die freiheit lassen, bei manchen gegnern mehrere gegner oder gegner verschiedener arten zu spawnen

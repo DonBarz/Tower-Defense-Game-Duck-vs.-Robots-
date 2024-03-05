@@ -19,8 +19,8 @@ public class level1_script : MonoBehaviour
             game_logic.XYpos_wants = new float[18]{     -6f,1.92f, // die zwei Zahlen sind die X und Y - Koordinaten der Wegpunkte, die ein Gegner nacheinander abgeht
                                                         4.32f,1.92f, //dabei ist jede erste eine X und jede zweite eine Y Koordinate
                                                         4.32f,0f,
-                                                        -1.6f,0f,
-                                                        -1.6f,0.8f,
+                                                        -1.44f,0f,
+                                                        -1.44f,0.8f,
                                                         -4.32f,0.8f,
                                                         -4.32f,-1.92f,
                                                         2.4f,-1.92f,
