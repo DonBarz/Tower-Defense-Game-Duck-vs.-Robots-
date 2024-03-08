@@ -27,7 +27,7 @@ public class tower_script : MonoBehaviour
 
     float fire_cooldown;
     float firerate = 1f;   //für zeitabstände zwischen einzelnen Schüssen
-    float max_range = 1f;
+    float max_range = 1.5f;
     public GameObject Schuss;
 
     void Start()

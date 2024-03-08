@@ -13,7 +13,7 @@ public class waves_script : MonoBehaviour{
 
     public static float[] waves = new float[30] {
                                             3,                  //welle1; jeder block beschreibt eine welle; hierbei ist die erste zahl die anzahl der stufen, und die aufeinanderfolgenden vierer-blöcke die einzelnen stufen
-                                            1,1,0.5f,5,         //alle vier aufeinandefolgenden Zahlen beschreiben eine stufe; Dabei sind die ersten beiden Art und Anzahl der Gegner, die dritte der Abstand zwischen den Gegnern und die vierte der Abstand zur nächsten stufe
+                                            1,1000,0.1f,5,         //alle vier aufeinandefolgenden Zahlen beschreiben eine stufe; Dabei sind die ersten beiden Art und Anzahl der Gegner, die dritte der Abstand zwischen den Gegnern und die vierte der Abstand zur nächsten stufe
                                             1,5,0.1f,5f,
                                             2,5,1f,0,
 

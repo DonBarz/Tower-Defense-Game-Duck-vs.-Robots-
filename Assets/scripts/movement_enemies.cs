@@ -28,7 +28,7 @@ public class movement_enemy : MonoBehaviour
     int already_done;
     int enemy_tier;
 
-    bool dead = false;
+    public bool dead = false;
 
     float death_waiting_timer = 0;
     float spawn_waiting_timer = 0;
@@ -60,10 +60,7 @@ public class movement_enemy : MonoBehaviour
         }
 
     }
-        void OnTriggerEnter2D(Collider2D other)
-    {
-        dead = true;
-    }
+    
 
     // Update is called once per frame
     void Update()
