@@ -14,14 +14,15 @@ public class bullet_script : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        pen = 2;
+        pen = transform.position.z;
+        transform.position = new Vector3(transform.position.x, transform.position.y, 0);
     }
     void OnTriggerEnter2D(Collider2D other)
     {
 
         if (pen > 0 & !has_collided)
         {
-            print(pen);
+            //print(pen);//für testzwecke
 
             has_collided = true;
             pen -= 1;

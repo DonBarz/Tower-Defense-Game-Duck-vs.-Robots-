@@ -7,6 +7,7 @@ TagManager:
   - level_hb
   - enemy_movement_logic
   - enemy
+  - tower
   layers:
   - Default
   - TransparentFX

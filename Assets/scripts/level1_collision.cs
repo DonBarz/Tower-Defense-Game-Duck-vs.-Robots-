@@ -7,7 +7,7 @@ public class level1_collision : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    public TilemapCollider2D collider;
+    public new TilemapCollider2D collider;
     void Start()
     {
         

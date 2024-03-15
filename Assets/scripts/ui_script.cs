@@ -9,6 +9,8 @@ public class ui_script : MonoBehaviour
     public Text moneyText;
     int money;
 
+    public Text healthText;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,5 +23,6 @@ public class ui_script : MonoBehaviour
         money = game_logic.money;
 
         moneyText.text = money.ToString();
+        healthText.text = game_logic.hitpoints.ToString();
     }
 }

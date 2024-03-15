@@ -4,12 +4,22 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 //using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.U2D;
 using static UnityEngine.GraphicsBuffer;
 
 
-public class tower_script : MonoBehaviour
+public class tower_script : MonoBehaviour, IPointerClickHandler
 {
+    SpriteRenderer[] rangeRenderers;
+    SpriteRenderer rangeRenderer;
+
+    Transform[] rangeTransforms;
+    Transform rangeTransform;
+
+    bool show_range;
+    int towerID;
+
     public Collider2D coll;
     public SpriteRenderer towerRenderer;
 
@@ -18,7 +28,8 @@ public class tower_script : MonoBehaviour
     float tower_dir;
     float minDist;
     Transform tMin;
-    int cost = 250;
+
+    int cost = 150;
 
     bool is_placing = true;
     bool can_place = true;
@@ -26,14 +37,25 @@ public class tower_script : MonoBehaviour
     Transform enemies_pos;
     float enemy_distance;
 
+    int pen = 2;
+
     float fire_cooldown;
     float firerate = 1f;   //für zeitabstände zwischen einzelnen Schüssen
-    float max_range = 1.5f;
+    float max_range = 1f;
     public GameObject Schuss;
 
     void Start()
     {
         anim = GetComponent<Animator>();
+
+        rangeTransforms = GetComponentsInChildren<Transform>();
+        rangeTransform = rangeTransforms[1];
+        rangeTransform.localScale = Vector3.one * max_range * 2;
+
+        rangeRenderers = GetComponentsInChildren<SpriteRenderer>();
+        rangeRenderer = rangeRenderers[1];
+
+        showRange();
 
     }
 
@@ -50,12 +72,22 @@ public class tower_script : MonoBehaviour
 
     void Update()
     {
-//enten platzieren////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-            //nur wenn am platzieren-wird ausgeführt
-            if (is_placing)
+        if (towerID == game_logic.recentTowerID)
         {
-            transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10));
+            show_range = true;
+            game_logic.Tower_selected = true;
+        }
+        else
+        {
+            show_range = false;
+        }
+
+        //enten platzieren////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        //nur wenn am platzieren-wird ausgeführt
+        if (is_placing){
+
+                transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10));
 
             //Platziermodus deaktivieren
             if (Input.GetKeyDown("t") | Input.GetKeyDown("escape"))
@@ -96,15 +128,22 @@ public class tower_script : MonoBehaviour
         //wenn nicht platziert wird
         else
         {
+
             //aktivieren des colliders (für andere türme)
             coll.isTrigger = false;
             //setzen der farbe auf undurchsichtig
             towerRenderer.color = new Color(1, 1, 1, 1f);
 
-//Quietscheente Platzieren////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            //Quietscheente Platzieren////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-
+            if (show_range)
+            {
+                rangeRenderer.enabled = true;
+            }
+            else
+            {
+                rangeRenderer.enabled = false;
+            }
 
             enemies = GameObject.FindGameObjectsWithTag("enemy");
 
@@ -145,7 +184,7 @@ public class tower_script : MonoBehaviour
 
                 if (fire_cooldown <= 0) 
                 {
-                    Instantiate(Schuss,transform.position, Quaternion.Euler(0, 0, tower_dir * -1 + 180));
+                    Instantiate(Schuss,new Vector3(transform.position.x, transform.position.y , pen), Quaternion.Euler(0, 0, tower_dir * -1 + 180));
                     fire_cooldown = firerate;
                 }
 
@@ -245,10 +284,47 @@ public class tower_script : MonoBehaviour
             anim.SetBool("is_facing_down_left", false);
         }
     }
-    public void onButtonClick()
+    public void OnPointerClick(PointerEventData pointerEventData)
     {
+        if (!is_placing)
+        {
+            if (towerID == game_logic.recentTowerID)
+            {
+                unshowRange();
+            }
+            else
+            {
+                showRange();
+            }
+        }
+    }
+
+    public void showRange()
+    {
+        int ID = 0;
+
+        while (ID == 0 | ID == game_logic.recentTowerID)
+        {
+            ID = new System.Random().Next();
+        }
+
+        towerID = ID;
+        game_logic.recentTowerID = ID;
+        game_logic.newTowerSelected = true;
 
     }
 
+    public void unshowRange()
+    {
+        int ID = 0;
 
+        while (ID == 0 | ID == game_logic.recentTowerID)
+        {
+            ID = new System.Random().Next();
+        }
+
+        towerID = ID;
+        
+
+    }
 }

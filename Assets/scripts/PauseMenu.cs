@@ -9,13 +9,22 @@ public class PauseMenu : MonoBehaviour
 
     public void Pause()
     {
-        pauseMenu.SetActive(true);
-        Time.timeScale = 0;
+        game_logic.paused = !game_logic.paused;
+        pauseMenu.SetActive(game_logic.paused);
+        if (game_logic.paused )
+        {
+            Time.timeScale = 0;
+        }
+        else
+        {
+            Time.timeScale = 1;
+        }
     }
 
     public void Resume()
     {
-        pauseMenu.SetActive(false);
+        game_logic.paused = false;
+        pauseMenu.SetActive(game_logic.paused);
         Time.timeScale = 1;
     }
 

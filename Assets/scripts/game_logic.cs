@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class game_logic : MonoBehaviour
 {
+    public GameObject PauseMenu;
+    public static bool paused;
 
     public static float[] XYpos_wants;
 
@@ -13,83 +15,61 @@ public class game_logic : MonoBehaviour
 
     public static int money = 450; //währung des spielers
 
-    public static float time_modi = 0; //variale zum modifizieren der zeit
+    public static float time_modi = 1; //variale zum modifizieren der zeit
 
     public static int level = 1;
 
-    public static bool game_has_started = false;
+    public static bool game_has_started = true;
 
-    public static bool main_menu_opened;
+    public static int recentTowerID = 0;
+    public static bool Tower_selected;
+    public static bool newTowerSelected;
 
     void Start()
     {
+        paused = false;
         Screen.SetResolution(1920, 1080, FullScreenMode.ExclusiveFullScreen, new RefreshRate() { numerator = 120, denominator = 1 });//setzen der auflösung für die bildschirmausgabe
     }
     
     // Update is called once per frame
     void Update()
     {
-        //print("health: " + hitpoints);
-        if (Input.GetKeyDown("space")) //zum stoppen der zeit (+später öffnen des pausenmenüs)
-        {
-            if (time_modi == 0)
-            {
-                time_modi = 1;
-                game_has_started=true;
-            }
-            else {
-                time_modi = 0;
-            }
-        }
-
-        if (Input.GetKeyDown("right")) //zum wechseln des levels
-        {
-            if (!game_has_started)
-            {
-                if (level >= 3)
-                {
-                    level = 1;
-                }
-                else
-                {
-                    level++;
-                }
-
-                print("Du spielst jetzt Karte " + level);
-            }
-            else {
-                print("Du spielst Karte " + level + "!");
-                print("Die Karte kann nachträglich nicht geändert werden (vorerst)!");
-            }
-
-        }
 
             if (Input.GetKeyDown("escape")) //zum stoppen der zeit (+später öffnen des pausenmenüs)
         {
-                if (!tower_placing.is_placing)
-                {
-                    if (main_menu_opened)
-                    {
-                        main_menu_opened = false;
-                    }
-                    else
-                    {
-                        main_menu_opened = true;
-                    }
+            //if (!tower_placing.is_placing & Tower_selected)
+            //{
+                //paused = !paused;
 
-                }
-            }
+                //if (paused)
+                //{
+                    //Time.timeScale = 1;
+                //}
+                //else
+                //{
+                    //Time.timeScale = 0;
+                //}
 
-        if (Input.GetKeyDown("q"))
-        {
-            if (main_menu_opened)
-            {
-                Application.Quit();
-            }
-        }
-            
+                //PauseMenu.SetActive(paused);
+            //}
+            //else 
+            //{
+                unSelect_towers();
+            //}
+         }
+
+        Tower_selected = false;
+        newTowerSelected = false;
+          
     }
 
-    
+    public void unSelect_towers()
+    {
+
+        if (!newTowerSelected)
+        {
+            recentTowerID = 0;
+        }
+    }
 
 }
