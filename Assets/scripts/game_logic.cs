@@ -9,9 +9,9 @@ public class game_logic : MonoBehaviour
     public static float[] XYpos_wants;
 
 
-    public static float hitpoints = 10f; //leben des spielers
+    public static int hitpoints = 10; //leben des spielers
 
-    public static float money = 45000000f; //währung des spielers
+    public static int money = 450; //währung des spielers
 
     public static float time_modi = 0; //variale zum modifizieren der zeit
 
@@ -23,7 +23,7 @@ public class game_logic : MonoBehaviour
 
     void Start()
     {
-        Screen.SetResolution(2560, 1440, fullscreenMode: FullScreenMode.MaximizedWindow, preferredRefreshRate: 240);//setzen der auflösung für die bildschirmausgabe
+        Screen.SetResolution(1920, 1080, FullScreenMode.ExclusiveFullScreen, new RefreshRate() { numerator = 120, denominator = 1 });//setzen der auflösung für die bildschirmausgabe
     }
     
     // Update is called once per frame

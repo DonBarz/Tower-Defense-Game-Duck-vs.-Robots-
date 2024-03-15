@@ -77,10 +77,13 @@ public class waves_script : MonoBehaviour{
                     {
                         if (spawnTimer > waves[stage * 4 + 3 + get_wave_index()])
                         {
-                            spawnTimer = 0;
-                            counter++;
-                            spawner.spawn_enemy((int)waves[stage * 4 + 1 + get_wave_index()], game_logic.XYpos_wants[0], game_logic.XYpos_wants[1], 0, enemy1, enemy2, enemy3);
+                            if (!spawner.spawned)
+                            {
+                                spawnTimer = 0;
+                                counter++;
+                                spawner.spawn_enemy((int)waves[stage * 4 + 1 + get_wave_index()], game_logic.XYpos_wants[0], game_logic.XYpos_wants[1], 0, enemy1, enemy2, enemy3);
 
+                            }
                         }
 
                     }

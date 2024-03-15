@@ -59,6 +59,8 @@ public class movement_enemy : MonoBehaviour
             enemy_die();
         }
 
+        spawner.spawned = false;
+
     }
     
 
@@ -188,7 +190,10 @@ public class movement_enemy : MonoBehaviour
                 death_waiting_timer -= Time.deltaTime * game_logic.time_modi;
                 if (death_waiting_timer <= 0)
                 {
-                    enemy_die();
+                    if (!spawner.spawned)
+                    {
+                        enemy_die();
+                    }
                 }
             }
         
@@ -235,4 +240,5 @@ public class movement_enemy : MonoBehaviour
                 deltaXY = 2f;
             }
         }
-    }
+}
+

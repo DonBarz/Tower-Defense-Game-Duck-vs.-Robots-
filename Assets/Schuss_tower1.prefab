@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 9211368536523185338}
   - component: {fileID: 2622240756770737210}
   - component: {fileID: 329805489256642333}
+  - component: {fileID: -4055759864327999420}
   m_Layer: 0
   m_Name: Schuss_tower1
   m_TagString: Untagged
@@ -69,7 +70,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.01
+  m_Radius: 0.05
 --- !u!212 &9211368536523185338
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -134,7 +135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 659717c9959503d41920bf77038c45e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 329805489256642333}
+  pen: 1
 --- !u!50 &329805489256642333
 Rigidbody2D:
   serializedVersion: 4
@@ -162,3 +163,24 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!95 &-4055759864327999420
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4057620297787407213}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

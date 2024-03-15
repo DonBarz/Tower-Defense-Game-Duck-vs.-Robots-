@@ -18,6 +18,7 @@ public class tower_script : MonoBehaviour
     float tower_dir;
     float minDist;
     Transform tMin;
+    int cost = 250;
 
     bool is_placing = true;
     bool can_place = true;
@@ -49,7 +50,7 @@ public class tower_script : MonoBehaviour
 
     void Update()
     {
-        
+//enten platzieren////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
             //nur wenn am platzieren-wird ausgef¸hrt
             if (is_placing)
@@ -67,19 +68,18 @@ public class tower_script : MonoBehaviour
             {
                 if (can_place)
                 {
-                    if (game_logic.money >= 250 & can_place)
+                    if (game_logic.money >= cost & can_place)
                     {
-                        game_logic.money -= 250;
+                        game_logic.money -= cost;
                         tower_placing.is_placing = false;
                         is_placing = false;
                     }
                 }
             }
 
-            //Quietscheente Platzieren
+            
 
-
-            if (can_place)
+            if (can_place & game_logic.money >= cost)
             {
                 //setzen der farbe auf weiﬂ durchsichtig, wenn man am aktuellen ort plazieren kann
                 towerRenderer.color = new Color(1, 1, 1, 0.65f);
@@ -100,6 +100,9 @@ public class tower_script : MonoBehaviour
             coll.isTrigger = false;
             //setzen der farbe auf undurchsichtig
             towerRenderer.color = new Color(1, 1, 1, 1f);
+
+//Quietscheente Platzieren////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 
 
@@ -242,6 +245,10 @@ public class tower_script : MonoBehaviour
             anim.SetBool("is_facing_down_left", false);
         }
     }
-    
+    public void onButtonClick()
+    {
+
+    }
+
 
 }

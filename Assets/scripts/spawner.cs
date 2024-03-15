@@ -9,6 +9,8 @@ public class spawner : MonoBehaviour
     public static int enemy_already_done;
     public static float enemy_Xpos;
     public static float enemy_Ypos;
+
+    public static bool spawned;
     // Start is called before the first frame update
 
     void Start()
@@ -19,7 +21,6 @@ public class spawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
     }
 
     //statische funktion zum erschaffen von gegnern; dabei werden die position, der fortschritt beim abgehen der wegpunkte, und die Art des gegners mitgegeben
@@ -27,7 +28,7 @@ public class spawner : MonoBehaviour
 
         enemy_already_done = point_on_map;
         enemy_tier = tier;
-        enemy_Ypos = Ypos; 
+        enemy_Ypos = Ypos;
         enemy_Xpos = Xpos;
         waves_script.cloned_count++;
         waves_script.clone_count++;
@@ -46,5 +47,8 @@ public class spawner : MonoBehaviour
         {
             Instantiate(enemy3, new Vector3(Xpos, Ypos, 0), new Quaternion( 0 , 0 , 0 , 0 ));
         }
+
+        spawned = true;
+
     }
 }
