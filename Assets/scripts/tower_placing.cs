@@ -5,16 +5,17 @@ using UnityEngine;
 public class tower_placing : MonoBehaviour
 {
     public static bool is_placing = false;
-    public GameObject towersPrefab;
+    public GameObject tower1Prefab;
     // Start is called before the first frame update
     void Start()
     {
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10));
+        //transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10));
 
         //Platziermodus aktivieren
         if (Input.GetKeyDown("t"))
@@ -22,7 +23,7 @@ public class tower_placing : MonoBehaviour
             if(!is_placing & game_logic.game_has_started)
             {
                 is_placing = true;
-                Instantiate(towersPrefab, Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10)), transform.rotation);
+                Instantiate(tower1Prefab, Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10)), transform.rotation);
             }
         }
     }

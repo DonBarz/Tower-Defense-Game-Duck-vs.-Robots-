@@ -67,11 +67,7 @@ public class movement_enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if (game_logic.time_modi > 0)
-        {
-            enemy_move();
-        }
+        enemy_move();
     }
 
     void enemy_anim() {
@@ -140,7 +136,7 @@ public class movement_enemy : MonoBehaviour
             {
                 if (spawn_waiting_timer > 0)
                 {
-                    spawn_waiting_timer -= Time.deltaTime * game_logic.time_modi;
+                    spawn_waiting_timer -= Time.deltaTime;
                 }
 
                 if (spawn_waiting_timer <= 0)
@@ -178,7 +174,7 @@ public class movement_enemy : MonoBehaviour
 
                         enemy_anim();
 
-                        transform.position += (Vector3.up * deltaYpos * Time.deltaTime * game_logic.time_modi + Vector3.left * deltaXpos * Time.deltaTime * game_logic.time_modi);
+                        transform.position += (Vector3.up * deltaYpos * Time.deltaTime + Vector3.left * deltaXpos * Time.deltaTime);
                     //bewegt den gegner um den berechneten vektor
 
                 }
@@ -187,7 +183,7 @@ public class movement_enemy : MonoBehaviour
 
             if (dead)
             {
-                death_waiting_timer -= Time.deltaTime * game_logic.time_modi;
+                death_waiting_timer -= Time.deltaTime;
                 if (death_waiting_timer <= 0)
                 {
                     if (!spawner.spawned)

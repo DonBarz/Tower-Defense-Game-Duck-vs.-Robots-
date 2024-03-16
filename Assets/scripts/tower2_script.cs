@@ -9,7 +9,7 @@ using UnityEngine.U2D;
 using static UnityEngine.GraphicsBuffer;
 
 
-public class tower_script : MonoBehaviour, IPointerClickHandler
+public class tower2_script : MonoBehaviour, IPointerClickHandler
 {
     SpriteRenderer[] rangeRenderers;
     SpriteRenderer rangeRenderer;
@@ -22,8 +22,6 @@ public class tower_script : MonoBehaviour, IPointerClickHandler
 
     public Collider2D coll;
     public SpriteRenderer towerRenderer;
-
-    public Animator anim;
 
     float tower_dir;
     float minDist;
@@ -46,8 +44,6 @@ public class tower_script : MonoBehaviour, IPointerClickHandler
 
     void Start()
     {
-        anim = GetComponent<Animator>();
-
         rangeTransforms = GetComponentsInChildren<Transform>();
         rangeTransform = rangeTransforms[1];
         rangeTransform.localScale = Vector3.one * max_range * 2;
@@ -198,7 +194,6 @@ public class tower_script : MonoBehaviour, IPointerClickHandler
                     fire_cooldown = firerate;
                 }
 
-                tower_anim(tower_dir);
 
 
             }
@@ -213,87 +208,6 @@ public class tower_script : MonoBehaviour, IPointerClickHandler
 
     //funktion für die animationen
     //für jeden drehwinkel wird eine der acht drehrichtungen (als wahrheitswert) ausgerechnet und an den animator controller übergeben
-    void tower_anim(float tower_dir)
-    {
-
-        towerRenderer.sortingOrder = (int)((transform.position.y) * -1000); //je weiter unten ein turm ist, desto weiter vorne wird er angezeigt
-
-        if (tower_dir > 247.5f & tower_dir < 292.5f)
-        {
-            anim.SetBool("is_facing_left", true);
-        }
-        else
-        {
-            anim.SetBool("is_facing_left", false);
-        }
-
-
-        if (tower_dir > 292.5f & tower_dir < 337.5f)
-        {
-            anim.SetBool("is_facing_up_left", true);
-        }
-        else
-        {
-            anim.SetBool("is_facing_up_left", false);
-        }
-
-
-        if (tower_dir > 337.5f | tower_dir < 22.5f)
-        {
-            anim.SetBool("is_facing_up", true);
-        }
-        else
-        {
-            anim.SetBool("is_facing_up", false);
-        }
-
-        if (tower_dir > 22.5f & tower_dir < 67.5f)
-        {
-            anim.SetBool("is_facing_up_right", true);
-        }
-        else
-        {
-            anim.SetBool("is_facing_up_right", false);
-        }
-
-
-        if (tower_dir > 67.5f & tower_dir < 112.5f)
-        {
-            anim.SetBool("is_facing_right", true);
-        }
-        else
-        {
-            anim.SetBool("is_facing_right", false);
-        }
-
-        if (tower_dir > 112.5f & tower_dir < 157.5f)
-        {
-            anim.SetBool("is_facing_down_right", true);
-        }
-        else
-        {
-            anim.SetBool("is_facing_down_right", false);
-        }
-
-
-        if (tower_dir > 157.5f & tower_dir < 202.5f)
-        {
-            anim.SetBool("is_facing_down", true);
-        }
-        else
-        {
-            anim.SetBool("is_facing_down", false);
-        }
-
-        if (tower_dir > 202.5f & tower_dir < 247.5f)
-        {
-            anim.SetBool("is_facing_down_left", true);
-        }
-        else
-        {
-            anim.SetBool("is_facing_down_left", false);
-        }
-    }
     public void OnPointerClick(PointerEventData pointerEventData)
     {
         if (!is_placing)

@@ -43,11 +43,11 @@ public class bullet_script : MonoBehaviour
         rot = transform.eulerAngles.z * (-Mathf.PI/180) + Mathf.PI;
         
             transform.position += new Vector3(
-                  Mathf.Sin(rot) * Time.deltaTime * game_logic.time_modi * speed
-                , Mathf.Cos(rot) * Time.deltaTime * game_logic.time_modi * speed
+                  Mathf.Sin(rot) * Time.deltaTime * speed
+                , Mathf.Cos(rot) * Time.deltaTime * speed
                 , 0);
 
-            max_range -= Time.deltaTime * game_logic.time_modi;
+            max_range -= Time.deltaTime;
 
             if (max_range < 0)
             {

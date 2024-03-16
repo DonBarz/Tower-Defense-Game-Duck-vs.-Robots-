@@ -11,19 +11,7 @@ public class waves_script : MonoBehaviour{
     public GameObject enemy2;
     public GameObject enemy3;
 
-    public static float[] waves = new float[26] {
-                                            2,                  //welle1; jeder block beschreibt eine welle; hierbei ist die erste zahl die anzahl der stufen, und die aufeinanderfolgenden vierer-blöcke die einzelnen stufen
-                                            1,10,2f,1,         //alle vier aufeinandefolgenden Zahlen beschreiben eine stufe; Dabei sind die ersten beiden Art und Anzahl der Gegner, die dritte der Abstand zwischen den Gegnern und die vierte der Abstand zur nächsten stufe
-                                            1,10,0.5f,5f,
-
-                                            4,
-                                            2,500,0.1f,0,
-                                            1,10,0.5f,0,
-                                            2,5,0.25f,0,
-                                            2,20,1f,0
-
-
-                                            };
+    public static float[] waves;
 
     public static int clone_count;
     public static int cloned_count;
@@ -34,6 +22,7 @@ public class waves_script : MonoBehaviour{
     int counter;
     int stage;
     public static int wave;
+    int wave_count;
 
 
     void Start()
@@ -43,18 +32,86 @@ public class waves_script : MonoBehaviour{
         counter = 0;
         clone_count = 0;
         cloned_count = 0;
+
+        waves = new float[] {
+            2,
+            1, 1, 0, 2,
+            2, 1, 0, 0
+        };
+        wave_count = 1;
+
+        if (game_logic.difficulty == 1)
+        {
+            waves = new float[] {
+            1,
+            1, 10, 1.5f, 0,
+
+            1,
+            1, 20, 1f, 0,
+
+            2,
+            1, 20, 1.5f, 2,
+            2, 5, 1f, 0,
+
+            2,
+            2, 10, 1f, 2,
+            1, 10, 0.5f, 0,
+
+            };
+            wave_count = 4;
+        }
+
+        if (game_logic.difficulty == 2)
+        {
+            waves = new float[] {
+            1,
+            1, 10, 1.5f, 0,
+
+            1,
+            1, 20, 1f, 0,
+
+            2,
+            1, 20, 1.5f, 0.5f,
+            2, 5, 1f, 0,
+
+            2,
+            2, 15, 1f, 2,
+            1, 10, 0.5f, 0,
+
+            };
+            wave_count = 4;
+        }
+
+        if (game_logic.difficulty == 3)
+        {
+            waves = new float[] {
+            1,
+            1, 10, 1f, 0,
+
+            2,
+            1, 20, 0.75f, 0,
+
+            2,
+            1, 20, 1.5f, 0,
+            2, 10, 1f, 0,
+
+            2,
+            2, 20, 1f, 0,
+            1, 10, 0.1f, 0,
+
+            };
+            wave_count = 4;
+        }
     }
 
 
 
     void Update()
     {
-        if (game_logic.time_modi > 0)//nur falls die zeit nicht angehalten ist...
-        {
-            spawnTimer += Time.deltaTime * game_logic.time_modi;
-            timer += Time.deltaTime * game_logic.time_modi;
+            spawnTimer += Time.deltaTime;
+            timer += Time.deltaTime;
 
-            if (wave <= 2)
+            if (wave <= wave_count)
             {
 
                 if (cloned_count < get_stages_clone_sum())  //falls alle gegner der wellen schon gespawnt worden sind
@@ -93,6 +150,7 @@ public class waves_script : MonoBehaviour{
 
                     if (clone_count == 0)
                     {
+                        game_logic.money += wave * 100 - wave * wave;
                         wave++;
                         cloned_count = 0;
                         stage = 0;
@@ -104,7 +162,7 @@ public class waves_script : MonoBehaviour{
 
                 }
             }
-        }
+        
 
 
     }
@@ -133,6 +191,5 @@ public class waves_script : MonoBehaviour{
         }
         return clone_sum;
     }
-
 
 }

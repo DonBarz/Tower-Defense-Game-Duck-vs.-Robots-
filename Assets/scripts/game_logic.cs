@@ -8,14 +8,14 @@ public class game_logic : MonoBehaviour
     public GameObject PauseMenu;
     public static bool paused;
 
+    public static int difficulty;
+
     public static float[] XYpos_wants;
 
 
-    public static int hitpoints = 10; //leben des spielers
+    public static int hitpoints = 100; //leben des spielers
 
     public static int money = 450; //währung des spielers
-
-    public static float time_modi = 1; //variale zum modifizieren der zeit
 
     public static int level = 1;
 
@@ -27,13 +27,21 @@ public class game_logic : MonoBehaviour
 
     void Start()
     {
+        Time.timeScale = 1.0f;
         paused = false;
-        Screen.SetResolution(1920, 1080, FullScreenMode.ExclusiveFullScreen, new RefreshRate() { numerator = 120, denominator = 1 });//setzen der auflösung für die bildschirmausgabe
+
+        money = 500 - 50 * difficulty;
+        hitpoints = 125 - 25 * difficulty;
     }
     
     // Update is called once per frame
     void Update()
     {
+
+        if (hitpoints <= 0) 
+        {
+            Time.timeScale = 0;
+        }
 
             if (Input.GetKeyDown("escape")) //zum stoppen der zeit (+später öffnen des pausenmenüs)
         {
