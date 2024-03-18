@@ -15,7 +15,7 @@ public class game_logic : MonoBehaviour
 
     public static int hitpoints = 100; //leben des spielers
 
-    public static int money = 450; //währung des spielers
+    public static int money = 450; //wï¿½hrung des spielers
 
     public static int level = 1;
 
@@ -31,7 +31,7 @@ public class game_logic : MonoBehaviour
         paused = false;
 
         money = 500 - 50 * difficulty;
-        hitpoints = 125 - 25 * difficulty;
+        hitpoints = 51 - 25 * difficulty;
     }
     
     // Update is called once per frame
@@ -41,9 +41,11 @@ public class game_logic : MonoBehaviour
         if (hitpoints <= 0) 
         {
             Time.timeScale = 0;
+            AudioManager.Instance.musicSource.Stop();
+            AudioManager.Instance.PlaySFX("GameOver");
         }
 
-            if (Input.GetKeyDown("escape")) //zum stoppen der zeit (+später öffnen des pausenmenüs)
+            if (Input.GetKeyDown("escape")) //zum stoppen der zeit (+spï¿½ter ï¿½ffnen des pausenmenï¿½s)
         {
             //if (!tower_placing.is_placing & Tower_selected)
             //{
@@ -67,8 +69,7 @@ public class game_logic : MonoBehaviour
          }
 
         Tower_selected = false;
-        newTowerSelected = false;
-          
+        newTowerSelected = false;    
     }
 
     public void unSelect_towers()
