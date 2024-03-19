@@ -41,8 +41,8 @@ public class tower3_script : MonoBehaviour, IPointerClickHandler
     public static int pen = 1;
 
     float fire_cooldown;
-    float firerate = 0.1f;   //für zeitabstände zwischen einzelnen Schüssen
-    public static float max_range = 2.5f;
+    float firerate = 0.25f;   //für zeitabstände zwischen einzelnen Schüssen
+    public static float max_range = 1.8f;
     public GameObject Schuss;
 
     void Start()
@@ -57,6 +57,7 @@ public class tower3_script : MonoBehaviour, IPointerClickHandler
         rangeRenderer = rangeRenderers[1];
 
         showRange();
+
 
     }
 
@@ -193,8 +194,10 @@ public class tower3_script : MonoBehaviour, IPointerClickHandler
                 //print(tower_dir); //für test-zwecke
 
 
-                if (fire_cooldown <= 0) 
+                if (fire_cooldown <= 0)
                 {
+                    Schuss.GetComponent<bullet_script>().pen = pen;
+                    Schuss.GetComponent<bullet_script>().max_range = max_range / 5 * 1.1f;
                     Instantiate(Schuss,new Vector3(transform.position.x, transform.position.y , 1), Quaternion.Euler(0, 0, tower_dir * -1 + 180 + UnityEngine.Random.Range(-10, 10)),transform);
                     fire_cooldown = firerate;
                 }
