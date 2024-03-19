@@ -28,7 +28,7 @@ public class tower2_script : MonoBehaviour, IPointerClickHandler
     Transform tMin;
 
     int cost = 500;
-    int bullet_amount = 6;
+    int bullet_amount = 8;
 
     bool is_placing = true;
     bool can_place = true;
@@ -36,7 +36,7 @@ public class tower2_script : MonoBehaviour, IPointerClickHandler
     Transform enemies_pos;
     float enemy_distance;
 
-    public static int pen = 1;
+    public static int pen = 2;
 
     float fire_cooldown;
     float firerate = 1.5f;   //für zeitabstände zwischen einzelnen Schüssen
