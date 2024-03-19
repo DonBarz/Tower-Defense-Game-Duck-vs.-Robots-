@@ -5,7 +5,7 @@ using UnityEngine;
 public class bullet_script : MonoBehaviour
 {
 
-    float max_range = 0.2f; // *speed für echte max_range
+    public float max_range = 0.2f; // *speed für echte max_range
     float speed = 5; //geschwindigkeit
     float rot; //richtung für berechnungen
     public float pen = 2;  //gegner, die durchschossen werden können
