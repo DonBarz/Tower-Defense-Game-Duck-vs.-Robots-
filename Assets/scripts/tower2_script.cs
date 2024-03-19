@@ -27,7 +27,8 @@ public class tower2_script : MonoBehaviour, IPointerClickHandler
     float minDist;
     Transform tMin;
 
-    int cost = 250;
+    int cost = 500;
+    int bullet_amount = 6;
 
     bool is_placing = true;
     bool can_place = true;
@@ -35,11 +36,11 @@ public class tower2_script : MonoBehaviour, IPointerClickHandler
     Transform enemies_pos;
     float enemy_distance;
 
-    int pen = 2;
+    public static int pen = 1;
 
     float fire_cooldown;
-    float firerate = 1f;   //für zeitabstände zwischen einzelnen Schüssen
-    float max_range = 1f;
+    float firerate = 2f;   //für zeitabstände zwischen einzelnen Schüssen
+    public static float max_range = 0.6f;
     public GameObject Schuss;
 
     void Start()
@@ -188,9 +189,13 @@ public class tower2_script : MonoBehaviour, IPointerClickHandler
                 //print(tower_dir); //für test-zwecke
 
 
-                if (fire_cooldown <= 0) 
+                if (fire_cooldown <= 0) //schießt, nachdem eine bestimmte Zeit vergangen ist
                 {
-                    Instantiate(Schuss,new Vector3(transform.position.x, transform.position.y , pen), Quaternion.Euler(0, 0, tower_dir * -1 + 180));
+                    for (int i = 0; i <= 360; i += 360/bullet_amount)
+                    {
+                        Instantiate(Schuss, new Vector3(transform.position.x, transform.position.y, 1), Quaternion.Euler(0, 0, i), transform);
+                    }
+                    
                     fire_cooldown = firerate;
                 }
 

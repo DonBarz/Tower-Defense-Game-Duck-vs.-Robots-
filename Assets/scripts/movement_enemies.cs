@@ -72,7 +72,7 @@ public class movement_enemy : MonoBehaviour
 
     void enemy_anim() {
 
-        sprite.sortingOrder = (int) ((transform.position.y - Yoffset) * -1000); //je weiter unten ein gegner ist, desto weiter vorne wird er angezeigt
+        sprite.sortingOrder = (int) ((transform.position.y + Yoffset) * -1000); //je weiter unten ein gegner ist, desto weiter vorne wird er angezeigt
 
         if (Mathf.Abs(deltaXpos) > Mathf.Abs(deltaYpos) & deltaXpos > 0)
         {
@@ -227,13 +227,14 @@ public class movement_enemy : MonoBehaviour
 
             if (enemy_tier == 2)
             {
-            deltaXY = 1f;
+                deltaXY = 1f;
                 Yoffset = 0.45f;
             }
 
             if (enemy_tier == 3)
             {
-                deltaXY = 2f;
+                deltaXY = 0.8f;
+                Yoffset = 0.1f;
             }
         }
 }

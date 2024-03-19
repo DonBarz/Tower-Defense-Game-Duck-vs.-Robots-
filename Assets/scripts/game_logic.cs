@@ -8,7 +8,7 @@ public class game_logic : MonoBehaviour
     public GameObject PauseMenu;
     public static bool paused;
 
-    public static int difficulty;
+    public static int difficulty = 2;
 
     public static float[] XYpos_wants;
 
@@ -30,8 +30,8 @@ public class game_logic : MonoBehaviour
         Time.timeScale = 1.0f;
         paused = false;
 
-        money = 500 - 50 * difficulty;
-        hitpoints = 51 - 25 * difficulty;
+        money = 1500 - 50 * difficulty;
+        hitpoints = 125 - 25 * difficulty;
     }
     
     // Update is called once per frame
