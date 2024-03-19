@@ -485,7 +485,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coll: {fileID: 9163367838944411230}
   towerRenderer: {fileID: 7284682998602163630}
-  anim: {fileID: 0}
+  anim: {fileID: 2921103978990882342}
   Schuss: {fileID: 4057620297787407213, guid: 5d1bb0fe15d9d534bb7975674fde7694, type: 3}
 --- !u!95 &2921103978990882342
 Animator:
@@ -497,7 +497,7 @@ Animator:
   m_GameObject: {fileID: 4700278813453235124}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a12a51c251ea7c84996a41d4e1ba41e3, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
