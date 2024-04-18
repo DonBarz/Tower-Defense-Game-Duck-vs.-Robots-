@@ -103,6 +103,9 @@ MonoBehaviour:
   enemy1: {fileID: 4609130734008373480}
   enemy2: {fileID: 4609130734008373480, guid: 69fa00c537237fa40b889de1f1cbf1e0, type: 3}
   enemy3: {fileID: 4609130734008373480}
+  enemy4: {fileID: 4609130734008373480, guid: bbcbacc818a983846b1002497e3fb4b8, type: 3}
+  enemy5: {fileID: 4609130734008373480, guid: ff19f21b792b78a489213bb9802bd7da, type: 3}
+  anim: {fileID: 4191740474425929279}
   dead: 0
 --- !u!61 &-331414372693619105
 BoxCollider2D:
