@@ -16,7 +16,7 @@ public class MainMenu : MonoBehaviour
         game_logic.level = 1;//gibt das level an (1)
         SceneManager.LoadSceneAsync(1);//ändert Szene
         game_logic.game_has_started = true;
-    }
+        }
     public void PlayGame1()//Knopf 2
     {
         game_logic.level = 2;//gibt das level an (2)

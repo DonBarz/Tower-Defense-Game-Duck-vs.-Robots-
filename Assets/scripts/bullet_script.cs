@@ -21,7 +21,7 @@ public class bullet_script : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
 
-        if (pen > 0 & !has_collided & other.GetComponent<movement_enemy>().dead == false & other.GetComponent<movement_enemy>().spawn_waiting_timer <= 0)
+        if (pen > 0 & !has_collided & other.GetComponent<movement_enemy>().dead == false)
         {
             //print(pen);//für testzwecke
 
