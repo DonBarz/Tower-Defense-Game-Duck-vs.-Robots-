@@ -45,12 +45,11 @@ public class waves_script : MonoBehaviour{
         if (game_logic.difficulty == 1)
         {
             waves = new float[] {
-            5,
+            4,
             1, 1, 1.5f, 1.5f,
             2, 1, 1.5f, 1.5f,
             3, 1, 1.5f, 1.5f,
             4, 1, 1.5f, 1.5f,
-            5, 1, 1.5f, 1.5f,
 
             1,
             1, 20, 1f, 0,

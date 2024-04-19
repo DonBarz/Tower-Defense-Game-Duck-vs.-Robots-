@@ -30,7 +30,7 @@ public class tower4_script : MonoBehaviour, IPointerClickHandler
     float minDist;
     Transform tMin;
 
-    int cost = 300;
+    int cost = 350;
 
     bool is_placing = true;
     bool can_place = true;
@@ -38,11 +38,11 @@ public class tower4_script : MonoBehaviour, IPointerClickHandler
     Transform enemies_pos;
     float enemy_distance;
 
-    public static int pen = 2;
+    public static int pen = 5;
 
     float fire_cooldown;
-    float firerate = 1f;   //für zeitabstände zwischen einzelnen Schüssen
-    public static float max_range = 0.5f;
+    float firerate = 0.6f;   //für zeitabstände zwischen einzelnen Schüssen
+    public static float max_range = 1.5f;
     public GameObject Schuss;
 
     void Start()
