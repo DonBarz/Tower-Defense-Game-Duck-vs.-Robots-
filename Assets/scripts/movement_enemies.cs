@@ -11,8 +11,10 @@ public class movement_enemy : MonoBehaviour
     public GameObject enemy1;
     public GameObject enemy2;
     public GameObject enemy3;
+    public GameObject enemy4;
+    public GameObject enemy5;
 
-    private Animator anim;
+    public Animator anim;
     private SpriteRenderer sprite;
     private Collider2D coll;
 
@@ -28,15 +30,21 @@ public class movement_enemy : MonoBehaviour
     int already_done;
     int enemy_tier;
 
+    int hitpoints = 0;
+    int die_reward = 1;
+
     public bool dead = false;
 
     float death_waiting_timer = 0;
-    float spawn_waiting_timer = 0;
+    public float spawn_waiting_timer = 0.1f;
 
     // Start is called before the first frame update
     void Start()
     {
-        anim = GetComponent<Animator>();
+
+        
+
+        //anim = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
         coll = GetComponent<Collider2D>();
 
@@ -138,9 +146,6 @@ public class movement_enemy : MonoBehaviour
                 {
                     spawn_waiting_timer -= Time.deltaTime;
                 }
-
-                if (spawn_waiting_timer <= 0)
-                {
                     if (transform.position.x + 0.01 * deltaXY >= Xpos_want & transform.position.x - 0.01 * deltaXY <= Xpos_want
                     & transform.position.y + 0.01 * deltaXY >= Ypos_want & transform.position.y - 0.01 * deltaXY <= Ypos_want)
                     {
@@ -177,18 +182,28 @@ public class movement_enemy : MonoBehaviour
                         transform.position += (Vector3.up * deltaYpos * Time.deltaTime + Vector3.left * deltaXpos * Time.deltaTime);
                     //bewegt den gegner um den berechneten vektor
 
-                }
-                }
+                    }
+                
             }
 
             if (dead)
             {
                 death_waiting_timer -= Time.deltaTime;
+
                 if (death_waiting_timer <= 0)
                 {
                     if (!spawner.spawned)
-                    {
+                    {   
+                        if(hitpoints <= 0)
+                        {
                         enemy_die();
+
+                    }
+                    else{
+                        dead = false;
+                        hitpoints--;
+                    }
+
                     }
                 }
             }
@@ -196,24 +211,34 @@ public class movement_enemy : MonoBehaviour
     }
 
     void enemy_die()
+    {
+
+        waves_script.clone_count--;
+        dead = true;
+
+        if (enemy_tier == 2)
         {
+        
+        }
 
-            waves_script.clone_count--;
-            dead = true;
+        if (enemy_tier == 3)
+        {
+            spawner.spawn_enemy(1, transform.position.x, transform.position.y - Yoffset / 2, already_done, enemy1, enemy2, enemy3, enemy4, enemy5, 2);
+        }
 
-            if (enemy_tier == 2)
-            {
-                spawner.spawn_enemy(1, transform.position.x, transform.position.y - Yoffset / 2, already_done, enemy1, enemy2, enemy3);
-            }
+        if (enemy_tier == 4)
+        {
+            spawner.spawn_enemy(2, transform.position.x, transform.position.y - Yoffset / 2, already_done, enemy1, enemy2, enemy3, enemy4, enemy5, 1);
+        }
 
-            if (enemy_tier == 3)
-            {
-                spawner.spawn_enemy(2, transform.position.x, transform.position.y - Yoffset / 2, already_done, enemy1, enemy2, enemy3);
-            }
+        if (enemy_tier == 5)
+        {
+            spawner.spawn_enemy(4, transform.position.x, transform.position.y - Yoffset / 2, already_done, enemy1, enemy2, enemy3, enemy4, enemy5, 5);
+        }
 
         //könnte man vereinfachen... ich möchte mir aber die freiheit lassen, bei manchen gegnern mehrere gegner oder gegner verschiedener arten zu spawnen
         //das in so ähnlich auch bei set_enemy_speed...
-            game_logic.money++;
+            game_logic.money+= die_reward;
             Destroy(gameObject);
     }
         void set_enemy_speed()
@@ -234,6 +259,20 @@ public class movement_enemy : MonoBehaviour
             if (enemy_tier == 3)
             {
                 deltaXY = 0.8f;
+                Yoffset = 0.1f;
+            }
+
+            if (enemy_tier == 4)
+            {
+                deltaXY = 2.25f;
+                Yoffset = 0.1f;
+            }
+
+            if (enemy_tier == 5)
+            {
+                hitpoints = 100;
+                die_reward = 100;
+                deltaXY = 0.25f;
                 Yoffset = 0.1f;
             }
         }
