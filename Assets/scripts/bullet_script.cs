@@ -10,22 +10,24 @@ public class bullet_script : MonoBehaviour
     float rot; //richtung für berechnungen
     public float pen = 2;  //gegner, die durchschossen werden können
     bool has_collided;
+    public float scale = 1;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        pen = transform.position.z;
         transform.position = new Vector3 (transform.position.x, transform.position.y, 0);
+        transform.localScale = Vector3.one* scale;
     }
+
     void OnTriggerEnter2D(Collider2D other)
     {
 
-        if (pen > 0 & !has_collided & other.GetComponent<movement_enemy>().dead == false & other.GetComponent<movement_enemy>().spawn_waiting_timer <= 0)
+        if (pen > 0 & other.GetComponent<movement_enemy>().dead == false & other.GetComponent<movement_enemy>().spawn_waiting_timer <= 0)
         {
             //print(pen);//für testzwecke
 
-            has_collided = true;
+            //has_collided = true;
             pen -= 1;
             other.GetComponent<movement_enemy>().dead = true;
         }
@@ -39,7 +41,7 @@ public class bullet_script : MonoBehaviour
     // Update is called once per frames
     void Update()
     {
-        has_collided = false;
+        //has_collided = false;
 
         rot = transform.eulerAngles.z * (-Mathf.PI/180) + Mathf.PI;
         

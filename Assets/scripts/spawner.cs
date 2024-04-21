@@ -26,41 +26,38 @@ public class spawner : MonoBehaviour
     //statische funktion zum erschaffen von gegnern; dabei werden die position, der fortschritt beim abgehen der wegpunkte, und die Art des gegners mitgegeben
     public static void spawn_enemy(int tier, float Xpos, float Ypos, int point_on_map, GameObject enemy1, GameObject enemy2, GameObject enemy3, GameObject enemy4, GameObject enemy5, int amount) { //man braucht einen anderen weg, die GameObjects in die static void zu bekommen
 
-        enemy_already_done = point_on_map;
-        enemy_tier = tier;
-        enemy_Ypos = Ypos;
-        enemy_Xpos = Xpos;
-        waves_script.clone_count++;
-
-
         for (int i = 0; i < amount; i++)
         {
+            enemy_already_done = point_on_map;
+            enemy_tier = tier;
+            enemy_Ypos = Ypos + UnityEngine.Random.Range(-0.08f, 0.08f);
+            enemy_Xpos = Xpos + UnityEngine.Random.Range(-0.08f, 0.08f);
+
             if (tier == 1)
             {
-                Instantiate(enemy1, new Vector3(Xpos, Ypos, 0), new Quaternion(0, 0, 0, 0));
+                Instantiate(enemy1, new Vector3(enemy_Xpos, enemy_Ypos, 0), new Quaternion(0, 0, 0, 0));
             }
 
             if (tier == 2)
             {
-                Instantiate(enemy2, new Vector3(Xpos, Ypos, 0), new Quaternion(0, 0, 0, 0));
+                Instantiate(enemy2, new Vector3(enemy_Xpos, enemy_Ypos, 0), new Quaternion(0, 0, 0, 0));
             }
 
             if (tier == 3)
             {
-                Instantiate(enemy3, new Vector3(Xpos, Ypos, 0), new Quaternion(0, 0, 0, 0));
+                Instantiate(enemy3, new Vector3(enemy_Xpos, enemy_Ypos, 0), new Quaternion(0, 0, 0, 0));
             }
 
             if (tier == 4)
             {
-                Instantiate(enemy4, new Vector3(Xpos, Ypos, 0), new Quaternion(0, 0, 0, 0));
+                Instantiate(enemy4, new Vector3(enemy_Xpos, enemy_Ypos, 0), new Quaternion(0, 0, 0, 0));
             }
 
             if (tier == 5)
             {
-                Instantiate(enemy5, new Vector3(Xpos, Ypos, 0), new Quaternion(0, 0, 0, 0));
+                Instantiate(enemy5, new Vector3(enemy_Xpos, enemy_Ypos, 0), new Quaternion(0, 0, 0, 0));
             }
 
-            waves_script.clone_count++;
 
         }
 

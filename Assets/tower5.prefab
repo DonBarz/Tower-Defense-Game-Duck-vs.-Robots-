@@ -369,10 +369,10 @@ CircleCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 47
+    m_Bits: 175
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 80
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -460,7 +460,7 @@ SpriteRenderer:
   m_SortingLayerID: -596392099
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 786abfa726dc03449bb96a4847df947d, type: 3}
+  m_Sprite: {fileID: 1316577769, guid: 56f78e5a59b4f634b86b59187fdb8a78, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

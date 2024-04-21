@@ -36,19 +36,19 @@ public class movement_enemy : MonoBehaviour
     public bool dead = false;
 
     float death_waiting_timer = 0;
-    public float spawn_waiting_timer = 0.1f;
+    public float spawn_waiting_timer = 0.01f;
 
     // Start is called before the first frame update
     void Start()
     {
 
-        
+        waves_script.clone_count++;
 
         //anim = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
         coll = GetComponent<Collider2D>();
 
-        transform.position = new Vector3(spawner.enemy_Xpos, spawner.enemy_Ypos, 0);
+        //transform.position = new Vector3(spawner.enemy_Xpos, spawner.enemy_Ypos, 0);
         //print(spawner.enemy_Xpos + "" + spawner.enemy_Ypos);
 
         already_done = spawner.enemy_already_done;
@@ -212,13 +212,11 @@ public class movement_enemy : MonoBehaviour
 
     void enemy_die()
     {
-
-        waves_script.clone_count--;
         dead = true;
 
         if (enemy_tier == 2)
         {
-        
+            spawner.spawn_enemy(1, transform.position.x, transform.position.y - Yoffset / 2, already_done, enemy1, enemy2, enemy3, enemy4, enemy5, 1);
         }
 
         if (enemy_tier == 3)
@@ -238,8 +236,9 @@ public class movement_enemy : MonoBehaviour
 
         //könnte man vereinfachen... ich möchte mir aber die freiheit lassen, bei manchen gegnern mehrere gegner oder gegner verschiedener arten zu spawnen
         //das in so ähnlich auch bei set_enemy_speed...
-            game_logic.money+= die_reward;
-            Destroy(gameObject);
+        game_logic.money+= die_reward;
+        waves_script.clone_count--;
+        Destroy(gameObject);
     }
         void set_enemy_speed()
 
@@ -270,8 +269,8 @@ public class movement_enemy : MonoBehaviour
 
             if (enemy_tier == 5)
             {
-                hitpoints = 100;
-                die_reward = 100;
+                hitpoints = (int) ( (100/3) * game_logic.difficulty);
+                die_reward = 200;
                 deltaXY = 0.25f;
                 Yoffset = 0.1f;
             }

@@ -372,7 +372,7 @@ CircleCollider2D:
     m_Bits: 63
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 192
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -486,6 +486,7 @@ MonoBehaviour:
   coll: {fileID: 9163367838944411230}
   towerRenderer: {fileID: 7284682998602163630}
   anim: {fileID: 2921103978990882342}
+  pen: 2
   Schuss: {fileID: 4057620297787407213, guid: 5d1bb0fe15d9d534bb7975674fde7694, type: 3}
 --- !u!95 &2921103978990882342
 Animator:

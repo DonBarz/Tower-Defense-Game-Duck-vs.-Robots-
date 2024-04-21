@@ -27,7 +27,7 @@ public class tower2_script : MonoBehaviour, IPointerClickHandler
     float minDist;
     Transform tMin;
 
-    int cost = 500;
+    int cost = 320;
     int bullet_amount = 8;
 
     bool is_placing = true;
@@ -195,7 +195,8 @@ public class tower2_script : MonoBehaviour, IPointerClickHandler
                     {
                         Schuss.GetComponent<bullet_script>().pen = pen;
                         Schuss.GetComponent<bullet_script>().max_range = max_range / 5 * 1.1f;
-                        Instantiate(Schuss, new Vector3(transform.position.x, transform.position.y, 1), Quaternion.Euler(0, 0, i), transform);
+                        Schuss.GetComponent<bullet_script>().scale = 1f;
+                        Instantiate(Schuss, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.Euler(0, 0, i), transform);
                     }
                     
                     fire_cooldown = firerate;

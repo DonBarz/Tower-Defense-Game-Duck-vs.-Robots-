@@ -30,7 +30,7 @@ public class game_logic : MonoBehaviour
         Time.timeScale = 1.0f;
         paused = false;
 
-        money = 1500 - 50 * difficulty;
+        money = 500 - 50 * difficulty;
         hitpoints = 125 - 25 * difficulty;
     }
     
@@ -38,14 +38,29 @@ public class game_logic : MonoBehaviour
     void Update()
     {
 
-        if (hitpoints <= 0) 
+        if (hitpoints <= 0)
         {
-            Time.timeScale = 0;
+            hitpoints = 0;
+            Time.timeScale = 0.05f;
             AudioManager.Instance.musicSource.Stop();
             AudioManager.Instance.PlaySFX("GameOver");
         }
+        else
+        {
+            if (Input.GetKey("left shift"))
+            {
+                Time.timeScale = 5;
+            }
+            else
+            {
+                if(!paused)
+                {
+                    Time.timeScale = 1;
+                }
+            }
+        }
 
-            if (Input.GetKeyDown("escape")) //zum stoppen der zeit (+sp�ter �ffnen des pausenmen�s)
+        if (Input.GetKeyDown("escape")) //zum stoppen der zeit (+sp�ter �ffnen des pausenmen�s)
         {
             //if (!tower_placing.is_placing & Tower_selected)
             //{

@@ -30,7 +30,7 @@ public class tower5_script : MonoBehaviour, IPointerClickHandler
     float minDist;
     Transform tMin;
 
-    int cost = 600;
+    int cost = 450;
 
     bool is_placing = true;
     bool can_place = true;
@@ -38,11 +38,11 @@ public class tower5_script : MonoBehaviour, IPointerClickHandler
     Transform enemies_pos;
     float enemy_distance;
 
-    public static int pen = 1;
+    public static int pen = 2;
 
     float fire_cooldown;
     float firerate = 2f;   //für zeitabstände zwischen einzelnen Schüssen
-    public static float max_range = 1f;
+    public static float max_range = 1.25f;
     public GameObject Schuss;
 
     void Start()
@@ -198,7 +198,10 @@ public class tower5_script : MonoBehaviour, IPointerClickHandler
                 {
                     Schuss.GetComponent<bullet_script>().pen = pen;
                     Schuss.GetComponent<bullet_script>().max_range = max_range / 5 * 1.1f;
-                    Instantiate(Schuss,new Vector3(transform.position.x, transform.position.y , 1), Quaternion.Euler(0, 0, tower_dir * -1 + 180 + UnityEngine.Random.Range(-10, 10)),transform);
+                    Schuss.GetComponent<bullet_script>().scale = 1.25f;
+                    Instantiate(Schuss, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.Euler(0, 0, tower_dir * -1 + 180 - 10), transform);
+                    Instantiate(Schuss, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.Euler(0, 0, tower_dir * -1 + 180), transform);
+                    Instantiate(Schuss, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.Euler(0, 0, tower_dir * -1 + 180 + 10), transform);
                     fire_cooldown = firerate;
                 }
 
